@@ -1,7 +1,7 @@
 import typer
 from typing import Optional
 from rich.console import Console
-from conflict_detector import get_conflicted_files, extract_conflicts
+from conflict_detector import detect_merge_conflicts
 
 console = Console()
 
@@ -15,7 +15,7 @@ def main(
     if command == "resolve":
         console.print(f"🔍 Scanning for merge conflicts in [bold cyan]{repo_path}[/bold cyan] ...")
 
-        conflicted_files = get_conflicted_files(repo_path)
+        conflicted_files = detect_merge_conflicts(repo_path)
         
         if not conflicted_files:
             console.print("[green]✅ No merge conflicts found![/green]")
@@ -23,10 +23,10 @@ def main(
 
         for file in conflicted_files:
             console.print(f"⚠ Found conflict in: [bold yellow]{file}[/bold yellow]")
-            conflicts = extract_conflicts(file)
+            # conflicts = extract_conflicts(file)
 
-            for conflict in conflicts:
-                print(f"Conflict: {conflict}")
+            # for conflict in conflicts:
+                # print(f"Conflict: {conflict}")
                 # ai_resolution = resolve_conflict(conflict)
                 # apply_fix(file, ai_resolution)
 
