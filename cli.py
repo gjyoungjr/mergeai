@@ -5,6 +5,7 @@ from conflict_detector import get_conflicted_files, extract_conflicts
 
 console = Console()
 
+## Test merge conflict detector
 def main(
     command: str = typer.Argument(None),
     repo_path: Optional[str] = typer.Option(".", "--repo-path", "-r", help="Path to the repository")
